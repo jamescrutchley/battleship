@@ -18,7 +18,7 @@ function player(ownBoard = gameboard()) {
                 }
             }
             
-
+            // returning randomMove could be useful for dom
             return [randomMove, attemptedMoves];
             
         },
