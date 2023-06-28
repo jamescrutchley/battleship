@@ -22,7 +22,7 @@ function player(ownBoard = gameboard()) {
             return [randomMove, attemptedMoves];
             
         },
-        autoPlace() {
+        autoPlace(...ships) {
 
         }
     }

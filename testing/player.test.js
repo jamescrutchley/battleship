@@ -1,7 +1,8 @@
 import player from "../src/player";
+import { createShip } from "../src/Ship";
 
 
-describe('autoplace method', () => {
+describe('autoMove method', () => {
     let bot = player()
     let bot2 = player()
 
@@ -23,5 +24,21 @@ describe('autoplace method', () => {
         let [move, attemptedMoves] = bot.autoMove(bot2.ownBoard);
         
         expect(attemptedMoves.length).toBeGreaterThan(1);
+    })
+})
+
+// automatic placement of ships
+// pass in two ships of size 2 and 5 resp.
+// check bot's owngrid has 7 occupied spaces.
+// legality of those spaces determined elsewhere, via helper
+// function 'isLegalPlace'
+
+//placeShip exists as gameboard method...
+
+describe('autoPlace method', () => {
+    let bot = player()
+
+    test('successfully places two ships on grid', () => {
+        bot.autoPlace()
     })
 })
