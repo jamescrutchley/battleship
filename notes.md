@@ -35,3 +35,6 @@ Development Notes:
         - ongoing condition - return false
         - game over condition - return true
 
+    - upon building:
+        - needed to fix typo in webpack config (module rules)
+        - set src for webpackhtml plugin ...
