@@ -7,7 +7,7 @@ describe('autoplace method', () => {
 
     test('method returns int between 0-99', () => {
         expect(Array.isArray(bot.ownBoard.grid)).toBe(true);
-        let [place, tried] = bot.autoPlace(bot2.ownBoard)
+        let [place, tried] = bot.autoMove(bot2.ownBoard)
         expect(place).toBeGreaterThanOrEqual(0);
         expect(place).toBeLessThan(100);
     })
