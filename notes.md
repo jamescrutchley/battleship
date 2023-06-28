@@ -20,4 +20,18 @@ Development Notes:
     - test ship object methods
 
     -Create Gameboard factory
-    - 
+    -Create 'generateGrid' func for gameboard's grid prop.
+        -test generategrid returns an array as intended
+    
+    -Create test series for 'receieveAttack' method
+        - registers hit and calls hit method on correct ship,
+            correctly updates grid.
+        - registers miss and correctly updates grid.
+
+        - Difficulty using 'beforeEach' hook --
+            set up objects in the describe block instead.
+
+    -Create tests for 'checkAllSunk' method.
+        - ongoing condition - return false
+        - game over condition - return true
+
