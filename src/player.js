@@ -1,4 +1,5 @@
 import gameboard from "./Gameboard";
+import { getLegalPlace } from "./helpers";
 
 function player(ownBoard = gameboard()) {
     return {
@@ -24,17 +25,38 @@ function player(ownBoard = gameboard()) {
         },
         //for bots only...
         //players will use gameboard object's 'placeShip method'
-        autoPlace(method = this.ownBoard.placeShip, ...ships) {
-            for (let ship in ships) {
+        autoPlace(...ships) {
+            for (let ship of ships) {
+                console.log(ship)
+                if (typeof testMethod === 'function') {
+                    testMethod()
+                }
                 // get legal coords
+                let pending = true;
+                let coords;
 
-                // check if occupied
-
-                // call method(ship, coords)
-                method()
+                while (pending) {
+                    coords = getLegalPlace(ship.size);
+                    let flag = false; // Flag to track if space occupied
+                
+                    for (let coord of coords) {
+                        if (this.ownBoard.grid[coord].occupied) {  
+                            flag = true; // Set the flag to true if condition is satisfied
+                            break; // Exit the loop early
+                        }
+                    }
+                
+                    if (flag) {
+                        continue; 
+                    } else {
+                        pending = false;
+                    }
             }
+            console.log(coords)
+            this.ownBoard.placeShip(ship, ...coords);
         }
     }
+}
 }
 
 export default player;
