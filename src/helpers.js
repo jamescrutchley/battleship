@@ -27,3 +27,8 @@ export function getLegalPlace(shipSize) {
 
     return result;
 }
+
+
+export function isLegalPlacement(...coords) {
+    return true;
+}
