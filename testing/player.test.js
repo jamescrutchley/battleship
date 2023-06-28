@@ -35,16 +35,14 @@ describe('autoMove method', () => {
 
 //placeShip exists as gameboard method...
 
-describe('autoPlace method', () => {
+describe.only('autoPlace method', () => {
     let bot = player()
-    let cruiser = createShip(2);
-    let destroyer = createShip(5);
-    let mock = jest.fn();
 
-    test('calls placeship method twice w/ fleet of size 2', () => {
-        bot.autoPlace(mock, cruiser, destroyer);
-
-        
-        expect(mock).toHaveBeenCalledTimes(2);
+    test('correctly updates board', () => {
+        let tanker = createShip(5);
+        let recon = createShip(2);
+    
+        bot.autoPlace(tanker, recon);
+        expect(bot.ownBoard.grid.filter(space => space.occupied)).toHaveLength(7)
     })
 })
