@@ -1,0 +1,55 @@
+* {
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.gridContainer {
+    display: flex;
+    flex-direction: row;
+
+    gap: 20px;
+}
+
+.grid {
+    width: 400px;
+    height: 400px;
+
+    border: 1px black solid;
+    display: grid;
+    grid-template-columns: repeat(10,1fr);
+
+}
+
+.cell {
+    background-color: white;
+    border: 1px black solid;
+}
+
+.cell p {
+    font-size: 0.5rem;
+    font-weight: bold;
+    background: none;
+}
+
+.hovered {
+    background-color: lightgrey !important;
+    size: 40px;
+}
+
+/* .cell:not(.occupied) {
+    background-color: lightblue;
+} */
+
+.occupied {
+    background-color: grey;
+}
+
+.temp-occupied {
+    background-color: darkgray;
+}
+
+
+
+body {
+    margin: 5px;
+}
