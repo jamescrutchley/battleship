@@ -11,6 +11,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
         title: 'Development',
+        template: './src/index.html'
     }),
   ],
   output: {
@@ -25,8 +26,8 @@ module.exports = {
             type: 'asset/resource'
           },
           {
-            test: /\.s[ac]ss$/i,
-            use: ["style-loader", "css-loader", "sass-loader"]
+            test: /\.css$/i,
+            use: ['style-loader', 'css-loader'],
           }
         ]
     },
