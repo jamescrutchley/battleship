@@ -1,14 +1,13 @@
-import { isLegalMove, isLegalPlace } from "../src/helpers";
-import gameboard from "../src/Gameboard";
+import { getLegalPlace } from "../src/helpers";
 
-describe('isLegalMove function', () => {
-    let board = gameboard();
-    board.grid[0].alreadyHit = true;
+describe('getLegalPlace helper function', () => {
+    let suite = [1, 2, 3, 4, 5, 6, 7];
 
-    test('returns false when selecting a space already hit', () => {
-        expect(isLegalMove(board, 0)).toBe(false);
-    });
-    test('returns true when selecting a space not yet hit', () => {
-        expect(isLegalMove(board, 1)).toBe(true);
-    });
+    for (let int of suite) {
+
+        test('returns appropriate number of values', () => {
+            
+                expect(getLegalPlace(int)).toHaveLength(int)
+        })
+    }
 })
