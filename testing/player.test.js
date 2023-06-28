@@ -37,8 +37,14 @@ describe('autoMove method', () => {
 
 describe('autoPlace method', () => {
     let bot = player()
+    let cruiser = createShip(2);
+    let destroyer = createShip(5);
+    let mock = jest.fn();
 
-    test('successfully places two ships on grid', () => {
-        bot.autoPlace()
+    test('calls placeship method twice w/ fleet of size 2', () => {
+        bot.autoPlace(mock, cruiser, destroyer);
+
+        
+        expect(mock).toHaveBeenCalledTimes(2);
     })
 })

@@ -22,8 +22,17 @@ function player(ownBoard = gameboard()) {
             return [randomMove, attemptedMoves];
             
         },
-        autoPlace(...ships) {
+        //for bots only...
+        //players will use gameboard object's 'placeShip method'
+        autoPlace(method = this.ownBoard.placeShip, ...ships) {
+            for (let ship in ships) {
+                // get legal coords
 
+                // check if occupied
+
+                // call method(ship, coords)
+                method()
+            }
         }
     }
 }
