@@ -1,4 +1,6 @@
-// src
+
+import './style.css';
+import { game } from './game';
 
 
-console.log('test')
+game();
