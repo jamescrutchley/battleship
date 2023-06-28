@@ -4,24 +4,25 @@ function player(ownBoard = gameboard()) {
     return {
         ownBoard,
     
-        autoPlace(board) {
-            let placed = false;
-            let randomPlace = Math.floor(Math.random() * 100);
-            let placedTried = [];
+        autoMove(board) {
+            let moved = false;
+            let randomMove = Math.floor(Math.random() * 100);
+            let attemptedMoves = [];
 
-            while (!placed) {
-                if (board.receiveAttack(randomPlace)) {
-                    placed = true;
+            while (!moved) {
+                if (board.receiveAttack(randomMove)) {
+                    moved = true;
                 } else {
-                    placedTried.push(randomPlace);
-                    randomPlace = Math.floor(Math.random() * 100);
+                    attemptedMoves.push(randomMove);
+                    randomMove = Math.floor(Math.random() * 100);
                 }
             }
             
-            return [randomPlace, placedTried];
+
+            return [randomMove, attemptedMoves];
             
         },
-        autoMove() {
+        autoPlace() {
 
         }
     }

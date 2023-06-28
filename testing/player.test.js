@@ -20,8 +20,8 @@ describe('autoplace method', () => {
             bot2.ownBoard.receiveAttack(i);
         };
 
-        let [place, tried] = bot.autoPlace(bot2.ownBoard);
+        let [move, attemptedMoves] = bot.autoMove(bot2.ownBoard);
         
-        expect(tried.length).toBeGreaterThan(1);
+        expect(attemptedMoves.length).toBeGreaterThan(1);
     })
 })

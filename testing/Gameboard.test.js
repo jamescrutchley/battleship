@@ -41,7 +41,6 @@ describe('checkAllSunk method', () => {
     const testShip = createShip(1);
     board.grid[0].occupied = testShip;
     test('game ongoing - there exist unhit, occupied spaces', () => {
-        console.log(board.grid)
         expect(board.grid[0].alreadyHit).toBe(false);
         expect(board.grid[0].occupied).toBeTruthy();
         expect(board.checkAllSunk()).toBe(false);
