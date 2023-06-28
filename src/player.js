@@ -27,11 +27,6 @@ function player(ownBoard = gameboard()) {
         //players will use gameboard object's 'placeShip method'
         autoPlace(...ships) {
             for (let ship of ships) {
-                console.log(ship)
-                if (typeof testMethod === 'function') {
-                    testMethod()
-                }
-                // get legal coords
                 let pending = true;
                 let coords;
 
@@ -52,7 +47,6 @@ function player(ownBoard = gameboard()) {
                         pending = false;
                     }
             }
-            console.log(coords)
             this.ownBoard.placeShip(ship, ...coords);
         }
     }
