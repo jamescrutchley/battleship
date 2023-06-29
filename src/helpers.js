@@ -39,10 +39,12 @@ export function getLegalPlace(shipSize) {
 
 export function isLegalPlacement(grid, coords) {
 
-    let status = true
+    let status = checkLastDigit(coords);
+
     try {
         for (let coord of coords) {
             if (grid.grid[coord].occupied) {
+                console.log('that space is occupied')
                 status = false
             }
         }
@@ -50,7 +52,6 @@ export function isLegalPlacement(grid, coords) {
         status = false;
     }
 
-    status = checkLastDigit(coords);
 
     return status;
 }

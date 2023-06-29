@@ -38,3 +38,5 @@ Development Notes:
     - upon building:
         - needed to fix typo in webpack config (module rules)
         - set src for webpackhtml plugin ...
+
+    - isLegalPlacement - broke by introducing second check and      allowing it to override the first check.
