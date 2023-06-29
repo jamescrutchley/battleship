@@ -50,5 +50,26 @@ export function isLegalPlacement(grid, coords) {
         status = false;
     }
 
+    status = checkLastDigit(coords);
+
     return status;
 }
+
+
+function checkLastDigit(array) {
+    for (let i = 1; i < array.length; i++) {
+      const current = array[i];
+      const previous = array[i - 1];
+      
+      if (getLastDigit(current) <= getLastDigit(previous)) {
+        return false;
+      }
+    }
+    
+    return true;
+  }
+  
+  function getLastDigit(number) {
+    return number % 10;
+  }
+  
