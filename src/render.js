@@ -123,7 +123,6 @@ export function renderGame(bot, player) {
 
 
 export function placeShips(fleet, grid, callback) {
-    console.log(grid);
     let fleetRemaining = fleet;
     let DOMPlayerGrid = document.querySelector('#playerGrid');
   
@@ -132,13 +131,15 @@ export function placeShips(fleet, grid, callback) {
     let selectedSpaces = [];
     let selectedElements = [];
     const childElements = DOMPlayerGrid.querySelectorAll('div');
+
+    childElements.forEach((element) => element.classList.add('clickable'))
   
     function handleCellClick(event) {
       if (selectedSpaces.length < 1) {
         return;
       }
   
-      if (isLegalPlacement(selectedSpaces)) {
+      if (isLegalPlacement(grid, selectedSpaces)) {
         grid.placeShip(fleetRemaining.shift(), ...selectedSpaces);
         selectedElements.forEach((element) => element.classList.add('temp-occupied'));
       }

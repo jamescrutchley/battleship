@@ -29,6 +29,18 @@ export function getLegalPlace(shipSize) {
 }
 
 
-export function isLegalPlacement(...coords) {
-    return true;
+export function isLegalPlacement(grid, coords) {
+
+    let status = true
+    try {
+        for (let coord of coords) {
+            if (grid.grid[coord].occupied) {
+                status = false
+            }
+        }
+    } catch {
+        status = false;
+    }
+
+    return status;
 }
