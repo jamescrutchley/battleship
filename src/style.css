@@ -25,6 +25,7 @@
     border: 1px black solid;
 }
 
+
 .cell p {
     font-size: 0.5rem;
     font-weight: bold;
@@ -46,6 +47,10 @@
 
 .temp-occupied {
     background-color: darkgray;
+}
+
+.clickable:not(.temp-occupied) {
+    cursor: pointer;
 }
 
 
