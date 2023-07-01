@@ -1,9 +1,22 @@
 * {
     box-sizing: border-box;
-    background-color: white;
+    background-color: rgb(238, 238, 238);
+}
+
+
+
+.app {
+    width: 100vw;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .gridContainer {
+    height: 60vh;
+
     display: flex;
     flex-direction: row;
 
@@ -11,25 +24,36 @@
 }
 
 .grid {
-    width: 400px;
-    height: 400px;
+
+    width: 36vw;
+    height: 36vw;
 
     border: 1px black solid;
     display: grid;
     grid-template-columns: repeat(10,1fr);
+    grid-template-rows: repeat(10, 1fr);
 
 }
 
 .cell {
-    background-color: white;
+    width: 3.6vw;
+    height: 3.6vw;
+
+    background-color: rgb(226, 252, 255);
     border: 1px black solid;
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
 
 .cell p {
     font-size: 0.5rem;
     font-weight: bold;
-    background: none;
+    background: none;  
 }
 
 .hovered {
@@ -41,6 +65,7 @@
     background-color: lightblue;
 } */
 
+/* #playerGrid  */
 .occupied {
     background-color: grey;
 }
@@ -53,6 +78,35 @@
     cursor: pointer;
 }
 
+.alreadyHit::after {
+    content: '◍';
+    position: absolute;
+    scale: 1.5;
+
+    color: blue;
+}
+
+.occupied.alreadyHit::after {
+    content: '◍';
+    position: absolute;
+    scale: 1.5;
+
+    color: red;
+}
+
+.gameoverMsg {
+    display: none;
+    font-weight: bold;
+}
+
+.restart {
+    cursor: pointer;
+    display: none;
+    border: none;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+}
 
 
 body {
