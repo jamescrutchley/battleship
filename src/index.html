@@ -7,16 +7,22 @@
 </head>
 <body>
     <div class="app">
-        <h1>Battleship</h1>
+        <div class="labelContainer">
+            <p class="botLabel label">Bot</p>
+            <h1>Battleship</h1>
+            <p class="playerLabel label">You</p>
+        </div>
         <div class="gridContainer">
             <div id="botGrid" class="grid"></div>
             <div id="playerGrid" class="grid"></div>
         </div>
+        <div id="playAgain">
+            <p class="gameoverMsg"></p>
+            <button class="restart">→ Restart? ←</button>
+        </div>
         <div id="info">
-            <div class="status"></div>
-            <div id="playAgain">
-                <p class="gameoverMsg"></p>
-                <button class="restart">Restart.</button>
+            <div class="status">
+                <p class="latestAction"></p>
             </div>
         </div>
     </div>
