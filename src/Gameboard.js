@@ -32,6 +32,10 @@ function gameboard() {
             if (square.occupied) {
                 // 'occupied' refers to a ship.
                 square.occupied.shipHit()
+                if (square.occupied.isSunk()) {
+                    //render hook...
+                    console.log('a ship has been sunk!')
+                }
             }
 
             status = true;
