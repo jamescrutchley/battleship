@@ -3,6 +3,9 @@ import player from "./player";
 import { restart } from "./game";
 
 
+let DOMBotGrid = document.querySelector('#botGrid');
+let DOMPlayerGrid = document.querySelector('#playerGrid');
+
 
 export function renderGame(bot, player) {
 
@@ -16,6 +19,8 @@ export function renderGame(bot, player) {
 
     let DOMBotGrid = document.querySelector('#botGrid');
     let DOMPlayerGrid = document.querySelector('#playerGrid');
+
+    shake(DOMPlayerGrid, DOMBotGrid);
 
     const allChildElements = document.querySelectorAll('.cell');
 
@@ -138,14 +143,12 @@ export function placeShips(fleet, grid, callback) {
   
   //provides visual cues for player attacks
   export function placeAttack(bot, callback) {
-    console.log('placeattack func')
+
+    console.log('place attack function called')
+
     let selected;
     let DOMBotGrid = document.querySelector('#botGrid');
     let botCells = document.querySelectorAll('#botGrid .cell');
-
-
-    DOMBotGrid.removeEventListener('mouseover', handleCellMouseOver)
-    DOMBotGrid.removeEventListener('click', handleReceiveAttack)
 
     botCells.forEach((cell) => {
         if (!cell.classList.contains('alreadyHit')) {
@@ -153,7 +156,15 @@ export function placeShips(fleet, grid, callback) {
         }
       });
       
-
+      
+    function handleReceiveAttack() {
+        if (bot.ownBoard.receiveAttack(selected)) {
+            detachListeners();
+            callback()
+        } else {
+            //
+        }
+    }
 
     function handleCellMouseOver(event) {
         botCells.forEach((element) => element.classList.remove('hovered'));
@@ -161,19 +172,30 @@ export function placeShips(fleet, grid, callback) {
         selected = Number(event.target.getAttribute('data-id') - 100)
     }
 
-    function handleReceiveAttack(event) {
-        if (bot.ownBoard.receiveAttack(selected)) {
-            callback(true)
-        } else {
-
-        }
+    function attachListeners() {
+        DOMBotGrid.addEventListener('mouseover', handleCellMouseOver)
+        DOMBotGrid.addEventListener('click', handleReceiveAttack)    
     }
 
-    DOMBotGrid.addEventListener('mouseover', handleCellMouseOver)
-    DOMBotGrid.addEventListener('click', handleReceiveAttack)
-    
+    function detachListeners() {
+        DOMBotGrid.removeEventListener('mouseover', handleCellMouseOver)
+        DOMBotGrid.removeEventListener('click', handleReceiveAttack)    
+    }
 
+    try {
+        detachListeners();
+    } catch {
+        console.log('catch detach')
+        //
+    }
+    attachListeners();
+
+    return {
+        detachListeners: detachListeners
+    }
+    
   }
+
 
 
   
@@ -208,3 +230,35 @@ export function placeShips(fleet, grid, callback) {
     restart.addEventListener('click', handlePlayAgainClick)
   }
 
+
+  //to indicate what's happening in game.
+  export function renderStatus(who, what){
+    let msg = `\n ${who} ${what}.`
+    let latestActionMsg = document.querySelector('.latestAction');
+    latestActionMsg.textContent = msg + latestActionMsg.textContent;
+  }
+
+
+
+  //For fun.
+  function shake(...elements) {
+    elements.forEach((element) => element.classList.remove('shake'));
+    elements.forEach((element) => element.classList.add('shake'));
+
+    setTimeout(() => {
+        elements.forEach((element) => element.classList.remove('shake'));
+      }, 200);
+  };
+
+
+
+  //bandaid 
+  export function disablePlay() {
+    console.log('disable play');
+    try {
+        DOMBotGrid.removeEventListener('mouseover', handleCellMouseOver)
+        DOMBotGrid.removeEventListener('click', handleReceiveAttack)
+    } catch {
+        //
+    }
+  }
