@@ -1,4 +1,4 @@
-### Battleship
+# Battleship
 
 A player vs bot implementation of the classic strategy game, built with Vanilla JS + Webpack.
 
