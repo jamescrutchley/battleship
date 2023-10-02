@@ -1,6 +1,5 @@
 * {
   box-sizing: border-box;
-  background-color: rgb(238, 238, 238);
   font-family: sans-serif, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -32,15 +31,17 @@
 
 .app {
   --dynamic-width: calc(100vw / 10);
-
   width: 100vw;
 
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   margin: 0;
   padding: 0;
+
+  background-color: rgb(210 242 255 / 59%);
 }
 
 h1 {
@@ -54,12 +55,109 @@ h1 {
   justify-self: center;
   margin: 0;
   padding: 0;
-  background-color: lightblue;
+  background-color: transparent;
+}
+
+.developed {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.developed a {
+    display: flex;
+    height: fit-content;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.developed a::before {
+    content: url('./github-mark.png');
+    width: 30px;
+    height: 30px;
+}
+
+
+.close {
+    position: absolute;
+    top: 0.3rem;
+    right: 0.3rem;
+    height: 20px;
+    width: 20px;
+    border: none;
+    background-color: transparent;
+    transform: scale(3);
+}
+/* .close:hover {
+    cursor: pointer;
+} */
+.close::after {
+    content: url('./times-circle.svg');
+    transform: scale(3);
+}
+.close:hover::after {
+    cursor: pointer;
+    transform: scale(3.3);
+}
+
+.modal {
+    z-index: 999;
+width: fit-content;
+display: none;
+background-color: rgb(255, 255, 255);
+border: 2px solid black;
+position: absolute;
+top: 12rem;
+padding: 2rem;
+margin: 1rem;
+
+flex-direction: column;
+gap: 1rem;
+}
+
+.credit {
+    text-align: center;
+}
+
+.modal button {
+    opacity: 0.6;
+}
+
+.modal button:hover {
+    opacity: 1;
+}
+
+.info {
+    position: fixed;
+    left: 0.5rem;
+    top: 0.5rem;
+    align-self: center;
+    justify-self: flex-end;
+    background-color: transparent;
+}
+
+.info button {
+    display: flex;
+    border-radius: 20px;
+    background-color: transparent;
+    border: none;
+}
+
+.info button:hover {
+    transform: scale(1.2);
+}
+
+.info button::after {
+content: url(./question-circle.svg);
+width: 30px;
+height: 30px;
 }
 
 h1::after {
   content: url(./battleship.svg);
-  transform: scale(0.12);
+  transform: scale(2) rotate(-2deg);
   width: 0px;
   padding: 5px;
 }
@@ -71,8 +169,11 @@ h2 {
 }
 
 .labelContainer {
+    transform: rotate(0.1deg);
+
+    justify-self: flex-start;
   color: black;
-  background-color: lightblue;
+  background-color: rgba(173, 216, 230, 0.599);
   height: 15vh;
   padding: 0;
   display: flex;
@@ -134,7 +235,7 @@ h2 {
 }
 
 .sunk {
-  background-color: black;
+  background-color: rgb(48, 48, 48);
 }
 
 .playerFleet ul,
@@ -241,7 +342,6 @@ h2 {
   display: flex;
   align-items: flex-start;
   max-height: 40vh;
-  overflow: hidden;
   animation: fadein 1s ease;
 }
 
@@ -272,6 +372,9 @@ h2 {
 body {
   padding: 0;
   margin: 0;
+
+  background-image: url('./lionello-delpiccolo-qEswHvOmi1c-unsplash.jpg');
+  /* mix-blend-mode: luminosity; */
 }
 
 .playerContainer,

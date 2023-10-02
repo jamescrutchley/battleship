@@ -7,6 +7,24 @@ import { placeShips, renderGame, placeAttack, renderGameOver, renderStatus, disa
 let recon, recon2, botFleet, playerFleet, bot, you;
 
 
+const toggleModal = () => {
+    const currentDisplay = window.getComputedStyle(modal).getPropertyValue('display');
+
+    if (currentDisplay === 'none' || currentDisplay === '') {
+      modal.style.display = 'flex';
+    } else {
+      modal.style.display = 'none';
+    }
+}
+
+const closeButton = document.querySelector('.close');
+const modalTrigger = document.querySelector('.info button');
+const modal = document.querySelector('.modal');
+modalTrigger.addEventListener('click', toggleModal);
+closeButton.addEventListener('click', toggleModal)
+
+
+
 export function game() {
     let gameoverFlag = false;
 

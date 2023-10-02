@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "private": true,
+  "homepage": "https://jamescrutchley.github.io/battleship",
   "scripts": {
     "test": "jest",
     "build": "webpack",
     "watch": "webpack --progress --watch",
-    "dev": "webpack serve"
+    "dev": "webpack serve",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [],
   "author": "",
