@@ -20,7 +20,6 @@ export function renderGame(bot, player) {
     let DOMBotGrid = document.querySelector('#botGrid');
     let DOMPlayerGrid = document.querySelector('#playerGrid');
 
-    shake(DOMPlayerGrid, DOMBotGrid);
 
     const allChildElements = document.querySelectorAll('.cell');
 
@@ -47,6 +46,10 @@ export function renderGame(bot, player) {
         if (cell.alreadyHit) {
             cellDiv.classList.add('alreadyHit')
         };
+        if (cell.occupied.sunk) {
+            console.log(cell);
+            cellDiv.classList.add('sunk');
+        }
 
         DOMBotGrid.append(cellDiv);
     }
@@ -66,8 +69,16 @@ export function renderGame(bot, player) {
             cellDiv.classList.add('alreadyHit')
         };
 
+
         DOMPlayerGrid.append(cellDiv);
     }
+
+    renderFleet(bot.ownBoard.grid, '.bot');
+    renderFleet(player.ownBoard.grid, '.player');
+
+    // let sunkShips = bot.ownBoard.grid.filter((square => square.occupied.sunk === true))
+    // console.log(sunkShips);
+
 }
 
 // function for ship placement - user.
@@ -235,21 +246,40 @@ export function placeShips(fleet, grid, callback) {
   export function renderStatus(who, what){
     let msg = `\n ${who} ${what}.`
     let latestActionMsg = document.querySelector('.latestAction');
-    latestActionMsg.textContent = msg + latestActionMsg.textContent;
+    latestActionMsg.textContent = msg;
   }
 
 
 
   //For fun.
-  function shake(...elements) {
-    elements.forEach((element) => element.classList.remove('shake'));
-    elements.forEach((element) => element.classList.add('shake'));
+//   function shake(...elements) {
+//     elements.forEach((element) => element.classList.remove('shake'));
+//     elements.forEach((element) => element.classList.add('shake'));
 
-    setTimeout(() => {
-        elements.forEach((element) => element.classList.remove('shake'));
-      }, 200);
-  };
+//     setTimeout(() => {
+//         elements.forEach((element) => element.classList.remove('shake'));
+//       }, 200);
+//   };
 
+export const renderFleet = (fleet, who) => {
+    const container = document.querySelectorAll(who);
+    let occupiedCells = fleet.filter(cell => cell.occupied);
+    const uniqueSizesSet = new Set();
+    occupiedCells.filter(cell => {
+        const size = cell.occupied.size;
+        if (!uniqueSizesSet.has(size)) {
+            uniqueSizesSet.add(cell.occupied);
+            return true;
+        }
+        return false;
+    });
+    console.log(uniqueSizesSet)
+    uniqueSizesSet.forEach((ship => {
+        if (ship.sunk === true) {
+            container[ship.size - 2].classList.add('sunkShip');
+        }
+    }))
+}
 
 
   //bandaid 

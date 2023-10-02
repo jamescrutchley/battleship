@@ -62,6 +62,15 @@ function gameboard() {
             return status;
         }
 
+        // checkShipSunk(fleet) {
+        //     console.log('checking')
+        //     fleet.forEach(ship => {
+        //         console.log(ship)
+        //         let thisShip = ship;
+        //         const sunk = this.grid.filter(square => square.alreadyHit && square.ship === thisShip)
+        //         console.log(sunk);
+        //     });
+        // }
     }
 }
 
