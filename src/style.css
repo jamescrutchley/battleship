@@ -1,245 +1,342 @@
 * {
-    box-sizing: border-box;
-    background-color: rgb(238, 238, 238);
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
-
+  box-sizing: border-box;
+  background-color: rgb(238, 238, 238);
+  font-family: sans-serif, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 @keyframes shake {
-    0% { transform: translateX(0); }
-    10%, 30%, 50%, 70%, 90% { transform: translateX(-1px); }
-    20%, 40%, 60%, 80% { transform: translateX(1px); }
-    100% { transform: translateX(0); }
+  0% {
+    transform: translateX(0);
   }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-1px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(1px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
 
-  .shake {
-    animation: shake 0.1s infinite;
-  }
+.shake {
+  animation: shake 0.1s infinite;
+}
 
 .app {
-    --dynamic-width: calc(100vw / 10);
+  --dynamic-width: calc(100vw / 10);
 
-    width: 100vw;
+  width: 100vw;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
 h1 {
-    margin-top: 10px;
-    padding: 0;
-    justify-self: flex-end;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding-top: 10px;
+  padding: 0;
+  justify-self: center;
+  margin: 0;
+  padding: 0;
+  background-color: lightblue;
+}
+
+h1::after {
+  content: url(./battleship.svg);
+  transform: scale(0.12);
+  width: 0px;
+  padding: 5px;
+}
+
+h2 {
+  margin: 5px;
+  padding: 0;
 }
 
 .labelContainer {
-    height: 15vh;
-    padding: 0;
-    display: flex;
-    width: calc(68vw + 110px + var(--dynamic-width));    
-    justify-content: space-between;
+  color: black;
+  background-color: lightblue;
+  height: 15vh;
+  padding: 0;
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+  margin-bottom: 2vw;
+  border-bottom: 2px solid;
 }
 
 .labelContainer p {
-    padding: 0; 
+  padding: 0;
 }
 
 .label {
-    margin: 0;
-    padding: 0;
-    align-self: flex-end;
-    position: relative;
-    font-weight: bold;
+  margin: 0;
+  padding: 0;
+  align-self: flex-end;
+  position: relative;
+  font-weight: bold;
 
-    font-size: calc(1vw + 10px)
-}
-
-.botLabel::after {
-    font-size: calc(2vw + 10px);
-    position: absolute;
-    content: '↘';
-    top: 3vh;
-    right: -2vw;
-}
-
-.playerLabel::before {
-    font-size: calc(2vw + 10px);
-    position: absolute;
-    content: '↙';
-    top: 3vh;
-    left: -2vw;
+  font-size: calc(1vw + 10px);
 }
 
 .gridContainer {
-    height: fit-content;
-    width: fit-content;
+  height: fit-content;
+  width: fit-content;
 
-    margin-top: 3vh;
+  margin-top: 1vh;
 
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 
-    gap: calc(var(--dynamic-width) + 10px);
+  gap: calc(var(--dynamic-width));
 }
 
 .grid {
+  width: fit-content;
+  height: fit-content;
 
-    width: fit-content;
-    height: fit-content;
-
-    border: 1px black solid;
-    display: grid;
-    grid-template-columns: repeat(10,1fr);
-    grid-template-rows: repeat(10, 1fr);
-
+  border: 2px black solid;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
 }
 
 .cell {
-    width: calc(1.8vw + 10px);
-    height: calc(1.8vw + 10px);
+  width: calc(1.8vw + 13px);
+  height: calc(1.8vw + 13px);
 
-    background-color: rgb(226, 252, 255);
-    border: 1px black solid;
-    position: relative;
+  background-color: rgb(226, 252, 255);
+  border: 1px rgb(48, 48, 48) solid;
+  position: relative;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.sunk {
+  background-color: black;
+}
 
+.playerFleet ul,
+.botFleet ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  max-height: 10vh;
+}
+
+.ship {
+  position: relative;
+  opacity: 1;
+}
+
+.sunkShip {
+    opacity: 0.5;
+}
+
+.playerFleet,
+.botFleet {
+  max-height: 10vh;
+  max-width: 30vw;
+}
+
+.ship::after {
+  content: url("./battleship.svg");
+  transform: scale(0.2);
+  position: relative;
+}
 .cell p {
-    font-size: 0.5rem;
-    font-weight: bold;
-    background: none;  
+  font-size: 0.5rem;
+  font-weight: bold;
+  background: none;
 }
 
 .hovered {
-    background-color: lightgrey !important;
-    size: 40px;
+  background-color: lightgrey !important;
+  size: 40px;
 }
 
 /* .cell:not(.occupied) {
     background-color: lightblue;
 } */
 
-
 #playerGrid .occupied {
-    background-color: grey;
+  background-color: grey;
 }
 
 .temp-occupied {
-    background-color: darkgray;
+  background-color: darkgray;
 }
 
 .clickable:not(.temp-occupied) {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .alreadyHit::after {
-    content: '◍';
-    position: absolute;
-    scale: 1.5;
+  content: "◍";
+  position: absolute;
+  scale: 1.5;
 
-    color: blue;
+  color: blue;
 }
 
 .occupied.alreadyHit::after {
-    content: '◍';
-    position: absolute;
-    scale: 1.5;
+  content: "◍";
+  position: absolute;
+  scale: 1.5;
 
-    color: red;
+  color: red;
 }
 
 #playAgain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gameoverMsg {
+  display: none;
+  font-weight: bold;
+}
+
+.restart {
+  cursor: pointer;
+  display: none;
+  border: none;
+  font-weight: 600;
+  margin: 0;
+  padding: 0;
+}
+
+#info {
+  margin-top: 0;
+  padding-top: 0;
+  margin-bottom: 10vh;
+
+  display: flex;
+  align-items: flex-start;
+  max-height: 40vh;
+  overflow: hidden;
+  animation: fadein 1s ease;
+}
+
+.latestaction {
+  margin: 0;
+  padding: 0;
+  white-space: break-spaces;
+  text-align: center;
+  transition: fadein 0.3s ease;
+  background-image: linear-gradient(rgba(255, 255, 255, 0), white);
+}
+
+.wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.gameoverMsg {
-    display: none;
-    font-weight: bold;
-}
-
-.restart {
-    cursor: pointer;
-    display: none;
-    border: none;
-    font-weight: 600;
-    margin: 0;
-    padding: 0;
-}
-
-#info {
-    margin-top: 0;
-    padding-top: 0;
-
-    display: flex;
-    align-items: flex-start;
-    max-height: 15vh;
-    overflow: hidden;
-}
-
-.latestaction {
-    margin: 0;
-    padding: 0;
-    white-space: break-spaces;
-    text-align: center;
-
-    background-image: linear-gradient(rgba(255, 255, 255, 0), white);
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 body {
-    margin: 5px;
+  padding: 0;
+  margin: 0;
 }
 
-
-
-
-
+.playerContainer,
+.botContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 @media (max-width: 600px) {
-    .app {
-        --dynamic-width: calc(100vw / 20);
-    }
+  .app {
+    --dynamic-width: calc(100vw / 20);
+  }
 }
 
 @media (max-width: 440px) {
-    #info {
-        max-height: 15vh;
+    .ship::after {
+        transform: scale(0.8);
     }
-    .cell {
-        width: auto;
-        height: auto;
-    }
+.playerFleet ul,
+.botFleet ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  max-height: 8vh;
+}
+  .playerContainer,
+  .botContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  h2 {
+    font-size: 16px;
+    padding-left: 0;
+    margin-left: 0;
+    max-width: 10vw;
+    margin-right: 5vw;
+  }
+  #info {
+    max-height: 8vh;
+  }
+  .cell {
+    width: auto;
+    height: auto;
+  }
 
-    .grid {
-        height: 30vh;
-        width: 30vh;
-    }
-    .gridContainer {
-        flex-direction: column;
-    }
-    .labelContainer {
-        height: 10vh;
-        justify-content: center;
-    }
-    .playerLabel {
-        position: absolute;
-        bottom: 40vh;
-        right: 10px;
-    }
-    .botLabel {
-        position: absolute;
-        top: 10vh;
-        left: 15px;
-
-    }
-
+  .grid {
+    height: 35vh;
+    width: 70vw;
+  }
+  .gridContainer {
+    flex-direction: column;
+    width: 100vw;
+  }
+  .labelContainer {
+    height: 10vh;
+    justify-content: center;
+  }
+  .playerLabel {
+    position: absolute;
+    bottom: 40vh;
+    right: 10px;
+  }
+  .botLabel {
+    position: absolute;
+    top: 10vh;
+    left: 15px;
+  }
 }

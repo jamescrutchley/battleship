@@ -8,13 +8,37 @@
 <body>
     <div class="app">
         <div class="labelContainer">
-            <p class="botLabel label">Bot</p>
             <h1>Battleship</h1>
-            <p class="playerLabel label">You</p>
         </div>
         <div class="gridContainer">
-            <div id="botGrid" class="grid"></div>
-            <div id="playerGrid" class="grid"></div>
+            <div class="botContainer">
+                <div class="wrapper">
+                <h2>Bot Grid</h2>
+                <div class="botFleet">
+                    <ul>
+                        <li class="ship bot"></li>
+                        <li class="ship bot"></li>
+                        <li class="ship bot"></li>
+                        <li class="ship bot"></li>
+                    </ul>
+                </div>
+            </div>
+                <div id="botGrid" class="grid"></div>
+            </div>
+            <div class="playerContainer">
+                <div class="wrapper">
+                <h2>Your Grid</h2>
+                <div class="playerFleet">
+                    <ul>
+                        <li class="ship player"></li>
+                        <li class="ship player"></li>
+                        <li class="ship player"></li>
+                        <li class="ship player"></li>
+                    </ul>
+                </div>
+            </div>
+                <div id="playerGrid" class="grid"></div>
+            </div>
         </div>
         <div id="playAgain">
             <p class="gameoverMsg"></p>
